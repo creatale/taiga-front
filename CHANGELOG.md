@@ -1,6 +1,13 @@
 # Changelog #
 
 
+## 1.9.0 ??? (unreleased)
+- Ability to choose a stylesheet theme (thanks to [@astagi](https://github.com/astagi))
+
+### Misc
+- Lots of small and not so small bugfixes.
+
+
 ## 1.8.0 ??? (unreleased)
 
 ### Features
