@@ -260,9 +260,8 @@ RegisterDirective = ($auth, $confirm, $location, $navUrls, $config, $analytics, 
             $location.path($navUrls.resolve("home"))
 
         onErrorSubmit = (response) ->
-            if response.data._error_message?
-                text = $translate.instant("LOGIN_FORM.ERROR_GENERIC") + " " + response.data._error_message
-                $confirm.notify("light-error", text + " " + response.data._error_message)
+            if response.data._error_message
+                $confirm.notify("light-error", response.data._error_message)
 
             form.setErrors(response.data)
 
@@ -438,9 +437,10 @@ InvitationDirective = ($auth, $confirm, $location, $params, $navUrls, $analytics
                                        "Welcome to #{_.escape($scope.invitation.project_name)}")
 
         onErrorSubmitRegister = (response) ->
-            text = $translate.instant("LOGIN_FORM.ERROR_AUTH_INCORRECT")
+            if response.data._error_message
+                $confirm.notify("light-error", response.data._error_message)
 
-            $confirm.notify("light-error", text)
+            registerForm.setErrors(response.data)
 
         submitRegister = debounce 2000, (event) =>
             event.preventDefault()
