@@ -19,6 +19,10 @@ div.wrapper(ng-controller="TaskDetailController as ctrl",
                     span.us-number(tg-bo-ref="task.ref")
                     span.us-name(tg-editable-subject, ng-model="task", required-perm="modify_task")
 
+                h3.us-title-text
+                    span.us-number Estimation
+                    span.us-name(tg-editable-estimation, ng-model="task", required-perm="modify_task")
+
                 h3.us-related-task(ng-if="us")
                     | {{ 'TASK.OWNER_US'|translate }}
                     a(tg-check-permission="view_us", href="", title="{{'TASK.TITLE_LINK_GO_OWNER' | translate}}",

@@ -16,6 +16,10 @@ form
             option(value="", translate="LIGHTBOX.CREATE_EDIT_TASK.OPTION_UNASSIGNED")
 
     fieldset
+        input(type="text", ng-model="task.estimation", ng-attr-placeholder="{{'LIGHTBOX.CREATE_EDIT_TASK.PLACEHOLDER_ESTIMATION' | translate}}",
+              data-required="false", data-maxlength="10")
+
+    fieldset
         div.tags-block(tg-lb-tag-line, ng-model="task.tags")
 
     fieldset
