@@ -99,6 +99,7 @@ UsEstimationDirective = ($tgEstimationsService, $rootScope, $repo, $confirm, $qq
                         totalPoints: @calculateTotalPoints()
                         roles: @calculateRoles()
                         editable: @isEditable
+                        estimation: us.estimation
                     }
                     mainTemplate = "common/estimation/us-estimation-points-per-role.html"
                     template = $template.get(mainTemplate, true)
@@ -209,7 +210,7 @@ EstimationsService = ($template, $qqueue, $repo, $confirm, $q) ->
             maxPointLength = 5
             horizontalList =  _.some points, (point) => point.name.length > maxPointLength
 
-            html = pointsTemplate({"points": points, roleId: roleId, horizontal: horizontalList})
+            html = pointsTemplate({"points": points, roleId: roleId, horizontal: horizontalList, estimation: @us.estimation})
             # Remove any previous state
             @$el.find(".popover").popover().close()
             @$el.find(".pop-points-open").remove()

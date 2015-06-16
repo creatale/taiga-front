@@ -547,6 +547,84 @@ module.directive("tgEditableSubject", ["$rootScope", "$tgRepo", "$tgConfirm", "$
 
 
 #############################################################################
+## Editable estimation directive
+#############################################################################
+
+EditableEstimationDirective = ($rootscope, $repo, $confirm, $loading, $qqueue, $template) ->
+    template = $template.get("common/components/editable-estimation.html")
+
+    link = ($scope, $el, $attrs, $model) ->
+
+        $scope.$on "object:updated", () ->
+            $el.find('.edit-estimation').hide()
+            $el.find('.view-estimation').show()
+
+        isEditable = ->
+            return $scope.project.my_permissions.indexOf($attrs.requiredPerm) != -1
+
+        save = $qqueue.bindAdd (estimation) =>
+            $model.$modelValue.estimation = estimation
+
+            $loading.start($el.find('.save-container'))
+
+            promise = $repo.save($model.$modelValue)
+            promise.then ->
+                $confirm.notify("success")
+                $rootscope.$broadcast("object:updated")
+                $el.find('.edit-estimation').hide()
+                $el.find('.view-estimation').show()
+            promise.then null, ->
+                $confirm.notify("error")
+            promise.finally ->
+                $loading.finish($el.find('.save-container'))
+
+            return promise
+
+        $el.click ->
+            return if not isEditable()
+            $el.find('.edit-estimation').show()
+            $el.find('.view-estimation').hide()
+            $el.find('input').focus()
+
+        $el.on "click", ".save", ->
+            estimation = $scope.item.estimation
+            save(estimation)
+
+        $el.on "keyup", "input", (event) ->
+            if event.keyCode == 13
+                estimation = $scope.item.estimation
+                save(estimation)
+            else if event.keyCode == 27
+                $scope.$apply () => $model.$modelValue.revert()
+
+                $el.find('div.edit-estimation').hide()
+                $el.find('div.view-estimation').show()
+
+        $el.find('div.edit-estimation').hide()
+        $el.find('div.view-estimation span.edit').hide()
+
+        $scope.$watch $attrs.ngModel, (value) ->
+            return if not value
+            $scope.item = value
+
+            if not isEditable()
+                $el.find('.view-estimation .edit').remove()
+
+        $scope.$on "$destroy", ->
+            $el.off()
+
+
+    return {
+        link: link
+        restrict: "EA"
+        require: "ngModel"
+        template: template
+    }
+
+module.directive("tgEditableEstimation", ["$rootScope", "$tgRepo", "$tgConfirm", "$tgLoading", "$tgQqueue",
+                                       "$tgTemplate", EditableEstimationDirective])
+
+#############################################################################
 ## Editable subject directive
 #############################################################################
 

@@ -842,7 +842,7 @@ UsPointsDirective = ($tgEstimationsService, $repo, $tgTemplate) ->
                         $ctrl.loadProjectStats()
 
                 estimationProcess.render = () ->
-                    totalPoints = @calculateTotalPoints()
+                    totalPoints = us.estimation # @calculateTotalPoints()
                     if not selectedRoleId? or roles.length == 1
                         text = totalPoints
                         title = totalPoints
