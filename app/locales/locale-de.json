@@ -995,7 +995,8 @@
             "IS_IOCAINE": "Ist Iocaine"
         },
         "ACTION_IOCAINE": "Locaine",
-        "TITLE_ACTION_IOCAINE": "Fühlen Sie sich von einer Aufgabe etwas erdrückt? Stellen Sie sicher, dass andere davon erfahren, indem Sie auf Locaine klicken, wenn Sie eine Aufgabe ändern. Es ist möglich, gegen dieses (fiktive) tödliche Gift immun zu werden, indem man kleine Mengen über einen Zeitraum hinweg einnimmt. Genauso, wie es möglich ist, besser in dem zu werden, was man tut, indem man gelegentlich zusätzliche  Herausforderungen annimmt!"
+        "TITLE_ACTION_IOCAINE": "Fühlen Sie sich von einer Aufgabe etwas erdrückt? Stellen Sie sicher, dass andere davon erfahren, indem Sie auf Locaine klicken, wenn Sie eine Aufgabe ändern. Es ist möglich, gegen dieses (fiktive) tödliche Gift immun zu werden, indem man kleine Mengen über einen Zeitraum hinweg einnimmt. Genauso, wie es möglich ist, besser in dem zu werden, was man tut, indem man gelegentlich zusätzliche  Herausforderungen annimmt!",
+		"ESTIMATION": "Schätzung"
     },
     "NOTIFICATION": {
         "OK": "Alles in Ordnung",
