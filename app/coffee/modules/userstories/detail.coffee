@@ -45,11 +45,13 @@ class UserStoryDetailController extends mixOf(taiga.Controller, taiga.PageMixin)
         "tgAppMetaService",
         "$tgNavUrls",
         "$tgAnalytics",
-        "$translate"
+        "$translate",
+        'ESTIMATION_MODES'
     ]
 
     constructor: (@scope, @rootscope, @repo, @confirm, @rs, @params, @q, @location,
-                  @log, @appMetaService, @navUrls, @analytics, @translate) ->
+                  @log, @appMetaService, @navUrls, @analytics, @translate, ESTIMATION_MODES) ->
+        @scope.ESTIMATION_MODES = ESTIMATION_MODES
         @scope.usRef = @params.usref
         @scope.sectionName = @translate.instant("US.SECTION_NAME")
         @.initializeEventHandlers()

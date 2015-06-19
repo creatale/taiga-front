@@ -19,7 +19,7 @@ div.wrapper(ng-controller="TaskDetailController as ctrl",
                     span.us-number(tg-bo-ref="task.ref")
                     span.us-name(tg-editable-subject, ng-model="task", required-perm="modify_task")
 
-                h3.us-title-text
+                h3.us-title-text(ng-if="project.estimation_mode === ESTIMATION_MODES.TASK")
                     span.us-number {{'TASK.ESTIMATION' | translate}}
                     span.us-name(tg-editable-estimation, ng-model="task", required-perm="modify_task")
 

@@ -598,6 +598,7 @@ modules = [
     "taigaResources2",
     "taigaAuth",
     "taigaEvents",
+	"taigaConstants",
 
     # Specific Modules
     "taigaHome",

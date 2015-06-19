@@ -99,7 +99,6 @@ UsEstimationDirective = ($tgEstimationsService, $rootScope, $repo, $confirm, $qq
                         totalPoints: @calculateTotalPoints()
                         roles: @calculateRoles()
                         editable: @isEditable
-                        estimation: us.estimation
                     }
                     mainTemplate = "common/estimation/us-estimation-points-per-role.html"
                     template = $template.get(mainTemplate, true)
@@ -126,12 +125,12 @@ module.directive("tgUsEstimation", ["$tgEstimationsService", "$rootScope", "$tgR
 ## Estimations service
 #############################################################################
 
-EstimationsService = ($template, $qqueue, $repo, $confirm, $q) ->
+EstimationsService = ($template, $qqueue, $repo, $confirm, $q, ESTIMATION_MODES) ->
     pointsTemplate = $template.get("common/estimation/us-estimation-points.html", true)
 
     class EstimationProcess
         constructor: (@$el, @us, @project) ->
-            @isEditable = @project.my_permissions.indexOf("modify_us") != -1
+            @isEditable = if @project.estimation_mode is ESTIMATION_MODES.TASK then false else @project.my_permissions.indexOf("modify_us") != -1
             @roles = @project.roles
             @points = @project.points
             @pointsById = groupBy(@points, (x) -> x.id)
@@ -210,7 +209,7 @@ EstimationsService = ($template, $qqueue, $repo, $confirm, $q) ->
             maxPointLength = 5
             horizontalList =  _.some points, (point) => point.name.length > maxPointLength
 
-            html = pointsTemplate({"points": points, roleId: roleId, horizontal: horizontalList, estimation: @us.estimation})
+            html = pointsTemplate({"points": points, roleId: roleId, horizontal: horizontalList})
             # Remove any previous state
             @$el.find(".popover").popover().close()
             @$el.find(".pop-points-open").remove()
@@ -241,4 +240,4 @@ EstimationsService = ($template, $qqueue, $repo, $confirm, $q) ->
         create: create
     }
 
-module.factory("$tgEstimationsService", ["$tgTemplate", "$tgQqueue",  "$tgRepo", "$tgConfirm", "$q", EstimationsService])
+module.factory("$tgEstimationsService", ["$tgTemplate", "$tgQqueue",  "$tgRepo", "$tgConfirm", "$q", 'ESTIMATION_MODES', EstimationsService])

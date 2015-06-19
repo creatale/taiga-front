@@ -15,7 +15,7 @@ form
                placeholder="{{'Assigned to'}}")
             option(value="", translate="LIGHTBOX.CREATE_EDIT_TASK.OPTION_UNASSIGNED")
 
-    fieldset
+    fieldset(ng-if="project.estimation_mode === ESTIMATION_MODES.TASK")
         input(type="text", ng-model="task.estimation", ng-attr-placeholder="{{'TASK.ESTIMATION' | translate}}",
               data-required="false", data-maxlength="10")
 

@@ -40,6 +40,11 @@ div.wrapper(tg-project-profile, ng-controller="ProjectProfileController as ctrl"
                 textarea(name="description", ng-attr-placeholder="{{'ADMIN.PROJECT_PROFILE.DESCRIPTION' | translate}}", id="project-description",
                          ng-model="project.description", data-required="true")
 
+            fieldset
+                label(for="project-estimation-mode", translate="ADMIN.PROJECT_PROFILE.ESTIMATION_MODE")
+                select(name="estimation-mode", ng-attr-placeholder="{{'ADMIN.PROJECT_PROFILE.ESTIMATION_MODE' | translate}}", id="project-estimation-mode",
+                       ng-model="project.estimation_mode", ng-options="estimationMode.label for estimationMode in estimationModesList track by estimationMode.value", data-required="true", convert-to-number)
+
             div
                 div.privacy-settings
                     div

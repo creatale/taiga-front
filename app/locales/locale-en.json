@@ -240,6 +240,10 @@
         "META": {
             "PAGE_TITLE": "Taiga",
             "PAGE_DESCRIPTION": "Taiga is a project management platform for startups and agile developers & designers who want a simple, beautiful tool that makes work truly enjoyable."
+        },
+        "ESTIMATION_MODES": {
+            "USER_STORY": "User Story estimation",
+            "TASK": "Task estimation"
         }
     },
     "LOGIN": {
@@ -420,7 +424,8 @@
             "DESCRIPTION": "Description",
             "PUBLIC_PROJECT": "Public project",
             "PRIVATE_PROJECT": "Private project",
-            "DELETE": "Delete this project"
+            "DELETE": "Delete this project",
+            "ESTIMATION_MODE": "Estimation mode"
         },
         "REPORTS": {
             "TITLE": "Reports",

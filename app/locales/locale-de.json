@@ -240,6 +240,10 @@
         "META": {
             "PAGE_TITLE": "Taiga",
             "PAGE_DESCRIPTION": "Taiga ist ein Projekt-Management Plattform für Neugründer und agile Entwickler und Designer, die ein unkompliziertes und ansprechendes Tool möchten, das die Arbeit wirklich angenehm macht. "
+        },
+        "ESTIMATION_MODES": {
+            "USER_STORY": "Schätzung auf User-Story-Ebene",
+            "TASK": "Schätzung auf Task-Ebene"
         }
     },
     "LOGIN": {
@@ -420,7 +424,8 @@
             "DESCRIPTION": "Beschreibung",
             "PUBLIC_PROJECT": "Öffentliches Projekt",
             "PRIVATE_PROJECT": "Privates Projekt",
-            "DELETE": "Dieses Projekt löschen"
+            "DELETE": "Dieses Projekt löschen",
+            "ESTIMATION_MODUS": "Schätzmodus"
         },
         "REPORTS": {
             "TITLE": "Reporte",

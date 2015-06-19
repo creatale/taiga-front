@@ -48,11 +48,18 @@ class ProjectProfileController extends mixOf(taiga.Controller, taiga.PageMixin)
         "$tgLocation",
         "$tgNavUrls",
         "tgAppMetaService",
-        "$translate"
+        "$translate",
+        'ESTIMATION_MODES'
     ]
 
     constructor: (@scope, @rootscope, @repo, @confirm, @rs, @params, @q, @location, @navUrls,
-                  @appMetaService, @translate) ->
+                  @appMetaService, @translate, ESTIMATION_MODES) ->
+        @scope.ESTIMATION_MODES = ESTIMATION_MODES
+        @scope.estimationModesList = []
+        for key, value of ESTIMATION_MODES
+            @scope.estimationModesList.push
+                value: value
+                label: @translate.instant 'COMMON.ESTIMATION_MODES.' + key
         @scope.project = {}
 
         promise = @.loadInitialData()
@@ -98,6 +105,22 @@ class ProjectProfileController extends mixOf(taiga.Controller, taiga.PageMixin)
         @rootscope.$broadcast("deletelightbox:new", @scope.project)
 
 module.controller("ProjectProfileController", ProjectProfileController)
+
+ConvertToNumberDirective = () ->
+    return {
+        'require': 'ngModel',
+        link: (scope, element, attrs, ngModel) ->
+            ngModel.$parsers.push (val) ->
+                return val.value
+            ngModel.$formatters.push (val) ->
+                for mode in scope.estimationModesList
+                    if mode.value is val
+                        return mode
+                return null
+            return
+    }
+			
+module.directive 'convertToNumber', ConvertToNumberDirective
 
 
 #############################################################################

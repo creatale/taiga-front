@@ -800,7 +800,7 @@ UsRolePointsSelectorDirective = ($rootscope, $template, $compile, $translate) ->
 module.directive("tgUsRolePointsSelector", ["$rootScope", "$tgTemplate", "$compile", UsRolePointsSelectorDirective])
 
 
-UsPointsDirective = ($tgEstimationsService, $repo, $tgTemplate) ->
+UsPointsDirective = ($tgEstimationsService, $repo, $tgTemplate, ESTIMATION_MODES) ->
     rolesTemplate = $tgTemplate.get("common/estimation/us-points-roles-popover.html", true)
 
     link = ($scope, $el, $attrs) ->
@@ -842,7 +842,11 @@ UsPointsDirective = ($tgEstimationsService, $repo, $tgTemplate) ->
                         $ctrl.loadProjectStats()
 
                 estimationProcess.render = () ->
-                    totalPoints = us.estimation # @calculateTotalPoints()
+                    if $scope.project.estimation_mode is ESTIMATION_MODES.TASK
+                        totalPoints = us.estimation
+                    else
+                        totalPoints = @calculateTotalPoints()
+
                     if not selectedRoleId? or roles.length == 1
                         text = totalPoints
                         title = totalPoints
@@ -900,7 +904,7 @@ UsPointsDirective = ($tgEstimationsService, $repo, $tgTemplate) ->
 
     return {link: link}
 
-module.directive("tgBacklogUsPoints", ["$tgEstimationsService", "$tgRepo", "$tgTemplate", UsPointsDirective])
+module.directive("tgBacklogUsPoints", ["$tgEstimationsService", "$tgRepo", "$tgTemplate", 'ESTIMATION_MODES', UsPointsDirective])
 
 
 #############################################################################

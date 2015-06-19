@@ -9,4 +9,4 @@ div.taskboard-task-inner
                     tg-nav="project-tasks-detail:project=project.slug,ref=task.ref")
     a.icon.icon-edit(tg-check-permission="modify_task",
         href="", title="{{'TASKBOARD.TITLE_ACTION_EDIT' | translate}}")
-    p(ng-bind="task.estimation")
+    p(ng-bind="task.estimation", ng-if="project.estimation_mode === ESTIMATION_MODES.TASK")

@@ -49,13 +49,15 @@ class TaskboardController extends mixOf(taiga.Controller, taiga.PageMixin)
         "$tgNavUrls"
         "$tgEvents"
         "$tgAnalytics",
-        "$translate"
+        "$translate",
+        'ESTIMATION_MODES'
     ]
 
     constructor: (@scope, @rootscope, @repo, @confirm, @rs, @params, @q, @appMetaService, @location, @navUrls,
-                  @events, @analytics, @translate) ->
+                  @events, @analytics, @translate, ESTIMATION_MODES) ->
         bindMethods(@)
 
+        @scope.ESTIMATION_MODES = ESTIMATION_MODES
         @scope.sectionName = @translate.instant("TASKBOARD.SECTION_NAME")
         @.initializeEventHandlers()
 
